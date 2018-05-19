@@ -3,13 +3,13 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-class Language(models.Model):
+class Idiom(models.Model):
 	name = models.CharField(max_length=30)
 	min_name = models.CharField(max_length=2)
 	image = models.CharField(max_length=50)
 
 class Info(models.Model):
-	language = models.OneToOneField(Language, on_delete=models.CASCADE, primary_key=True)
+	idiom = models.OneToOneField(Idiom, on_delete=models.CASCADE, primary_key=True)
 	title = models.CharField(max_length=20)
 	full_title = models.CharField(max_length=70)
 	greeting = models.BinaryField()
@@ -32,7 +32,7 @@ class Info(models.Model):
 
 
 class Community(models.Model):
-	language = models.OneToOneField(Language, on_delete=models.CASCADE, primary_key=True)
+	idiom = models.OneToOneField(Idiom, on_delete=models.CASCADE, primary_key=True)
 	greeting = models.CharField(max_length=30)
 	info = models.BinaryField()
 	btn_try = models.CharField(max_length=10)
@@ -41,7 +41,7 @@ class Community(models.Model):
 	save_data = models.TextField(max_length=20)
 
 class Compiler(models.Model):
-	language = models.OneToOneField(Language, on_delete=models.CASCADE, primary_key=True)
+	idiom = models.OneToOneField(Idiom, on_delete=models.CASCADE, primary_key=True)
 	info = models.BinaryField()
 	run = models.CharField(max_length=20)
 	save_pc = models.CharField(max_length=30)
@@ -51,7 +51,7 @@ class Compiler(models.Model):
 	go = models.CharField(max_length=30)
 
 class Profile(models.Model):
-	language = models.OneToOneField(Language, on_delete=models.CASCADE, primary_key=True)
+	idiom = models.OneToOneField(Idiom, on_delete=models.CASCADE, primary_key=True)
 	n_codes = models.CharField(max_length=20)
 	personal_data = models.CharField(max_length=30)
 	edit = models.CharField(max_length=30)

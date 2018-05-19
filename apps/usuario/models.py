@@ -27,9 +27,9 @@ class User(AbstractUser):
         ('github', 'GitHub'),
         ('facebook', 'Facebook'),
     )
-	age = models.IntegerField()
-	city = models.ForeignKey(City, null=False, blank=False, on_delete=models.CASCADE)
-	language = models.ForeignKey(Language, null=False, blank=False, on_delete=models.CASCADE)
+	age = models.IntegerField(null=True, blank=True)
+	city = models.ForeignKey(City, null=True, blank=True, on_delete=models.CASCADE)
+	language = models.ForeignKey(Language, null=True, blank=True, on_delete=models.CASCADE)
 	provider = models.CharField(max_length=8, choices=PROVIDERS, default='none')
 
 
