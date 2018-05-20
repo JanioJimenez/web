@@ -1,10 +1,10 @@
 from django.conf.urls import url
 
-from apps.page.views import home
+from apps.page.views import home, UserRegister
 
 urlpatterns = [
-    url(r'^(?P<idiom>[a-z]{2})/$', home, name="home"),
     url(r'^$', home, name="home"),
-    # url(r'^registrar', RegistroUsuario.as_view(), name="registrar"),
+    url(r'^(?P<idiom>[a-z]{2})/$', home, name="home"),
+    url(r'^signup', UserRegister.as_view(), name="signup"),
 
 ]
