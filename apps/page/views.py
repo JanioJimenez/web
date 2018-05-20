@@ -20,6 +20,24 @@ def home(request, idiom="es"):
 	else:
 		return HttpResponse("El idioma no fue encontrado");
 
+def redirect(request, idiom="es", pagename="home"):
+	idiom = Idiom.objects.filter(min_name=idiom).first()
+
+	if idiom:
+		idioms = Idiom.objects.all()
+
+		context = {"language" : idiom, "idioms":idioms}
+		# return HttpResponse(idiom.info.title);
+		return render(request, 'page/'+pagename+'.html', context)
+	else:
+		return HttpResponse("El idioma no fue encontrado");
+
+
+
+def community(request):
+
+	return render(request, 'page/community.html', context);
+
 class UserRegister(CreateView):
 	model = User
 	template_name = 'user/register.html'

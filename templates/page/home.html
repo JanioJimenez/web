@@ -37,12 +37,11 @@
 				indicators: false
 			});
 
-			$('select[name=idioms]').change(function(){
-				url = "{% url 'page:home' %}"+$(this).val();
-				console.log(url);
-				location.href = url;
-			});
-
+            $('select[name=idioms]').change(function(){
+                url = "{% url 'page:home' %}"+$(this).val();
+                console.log(url);
+                location.href = url;
+            });
 
 		});
 	</script>

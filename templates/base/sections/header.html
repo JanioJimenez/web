@@ -25,17 +25,17 @@
 					</select>
 	        		</li>
 	      		</ul>
-	      		<a href="{% url 'page:home' %}" class="brand-logo truncate" style="margin-left: 20px;"><i class="fab fa-galactic-senate fa-lg"></i> POICOFU</a>
-	      				
+	      		<a href="{% url 'page:redirect' language.min_name '' %}" class="brand-logo truncate" style="margin-left: 20px;"><i class="fab fa-staylinked"></i> POICOFU</a>
+
 				<a href="#" data-activates="mobile" class="button-collapse">
-					<i class="material-icons">menu</i>
+					<i class="fas fa-bars fa-lg"></i>
 				</a>
-	      				
+
 	      		<ul class="right hide-on-med-and-down">
-		        	<li><a href="{% url 'page:home' %}">{{language.info.home}}</a></li>
+		        	<li><a href="{% url 'page:redirect' language.min_name '' %}">{{language.info.home}}</a></li>
 
 		        	{% if request.user.is_authenticated %}
-						<li><a href="#">{{language.info.community}}</a></li>
+						<li><a href="{% url 'page:redirect' language.min_name 'community' %}">{{language.info.community}}</a></li>
 						<li><a href="#">{{language.info.compiler}}</a></li>
 
 						<li><a href="#!" class="dropdown-button" data-activates="drop-account">
@@ -43,14 +43,22 @@
 							{{request.user.username }} <i class="fas fa-angle-down"></i>
 						</a></li>
 		        	{% else %}
+						<li><a href="{% url 'page:signup' %}">{{language.info.sign_up}}</a></li>
 						<li><a href="{% url 'login' %}">{{language.info.login}}</a></li>
-
 		        	{% endif %}
 	      		</ul>
 	      		<ul class="side-nav" id="mobile">
 		        	<li><a href="{% url 'page:home' %}">{{language.info.home}}</a></li>
-		        	
-	      				        
+		        	{% if request.user.is_authenticated %}
+						<li><a href="{% url 'page:redirect' language.min_name 'community' %}">{{language.info.community}}</a></li>
+						<li><a href="#">{{language.info.compiler}}</a></li>
+
+						</a></li>
+		        	{% else %}
+						<li><a href="{% url 'page:signup' %}">{{language.info.sign_up}}</a></li>
+						<li><a href="{% url 'login' %}">{{language.info.login}}</a></li>
+		        	{% endif %}
+
 	      		</ul>
 	      	</div>
 	    </div>

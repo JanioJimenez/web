@@ -33,6 +33,29 @@ img.flag {
 	display: none;
 }
 
+/*========================  COMMUNITY ==========================*/
+.card-usercode {
+	padding: 10px;
+	padding-bottom: 5px;
+	border-radius: 7px;
+}
+.card-usercode .date{
+	font-size: 14px;
+	font-weight: 500;
+	color: grey;
+}
+.card-usercode .username{
+	color: #008864;
+	font-size: 22px;
+	font-weight: 500;
+}
+.card-usercode .codename{
+	font-size: 18px;
+	font-weight: 500;
+}
+.card-usercode .description{
+	font-size: 16px;
+}
 /*========================  LOGIN ==========================*/
 a.btn-block {
 	border-radius: 5px;

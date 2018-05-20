@@ -20,7 +20,11 @@ class Language(models.Model):
     image = models.CharField(max_length=50)
 
 
-class User(AbstractUser):
+class UserMethods:
+    def initial(self):
+        return self.username[0].upper()
+
+class User(AbstractUser, UserMethods):
 	PROVIDERS = (
         ('none', 'none'),
         ('google', 'Google'),
@@ -32,6 +36,8 @@ class User(AbstractUser):
 	language = models.ForeignKey(Language, null=True, blank=True, on_delete=models.CASCADE)
 	provider = models.CharField(max_length=8, choices=PROVIDERS, default='none')
 
+    # def name(self):
+    #     return '{} {}'.format(self.first_name, self.last_name)
 
 class Code(models.Model):
     name = models.CharField(max_length=30)
