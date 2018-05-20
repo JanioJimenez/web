@@ -1,8 +1,22 @@
+{% load staticfiles %}
 <header>
 	<nav>
 	    <div class="nav-wrapper teal">
 	      	<div class="container">
-	      		<a href="{% url 'page:home' %}" class="brand-logo truncate" style="margin-left: 20px;"><i class="fab fa-autoprefixer"></i>nombre</a>
+	      		<ul class="left hide-on-med-and-down">
+	        		<li>
+	        			<select name="idioms" id="idioms" class="icons idioms">
+					    {% for idiom in idioms %}
+							{% if idiom.id == language.id %}
+			        			<option value="{{idiom.min_name}}" data-icon="{% static 'images/flags/' %}{{idiom.image}}" class="left" disabled selected>{{idiom.name}}</option>
+				        	{% else %}
+			        			<option value="{{idiom.min_name}}" data-icon="{% static 'images/flags/' %}{{idiom.image}}" class="left">{{idiom.name}}</option>
+				        	{% endif %}
+			        	{% endfor %}
+					</select>
+	        		</li>
+	      		</ul>
+	      		<a href="{% url 'page:home' %}" class="brand-logo truncate center" style="margin-left: 20px;"><i class="fab fa-autoprefixer"></i>nombre</a>
 	      				
 				<a href="#" data-activates="mobile" class="button-collapse">
 					<i class="material-icons">menu</i>

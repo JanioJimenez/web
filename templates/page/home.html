@@ -4,8 +4,22 @@
 {% block content %}
     <div class="container">
         <h1>Estas en home</h1>
+        <h4>La pagina se mostrara en {{ language.name }}</h4>
+ 			
+			
     </div>
 {% endblock %}
 
 {% block extrajs %}
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+			$('select[name=idioms]').change(function(){
+				url = "{% url 'page:home' %}"+$(this).val();
+				console.log(url);
+				location.href = url;
+			});
+
+		});
+	</script>
 {% endblock %}
