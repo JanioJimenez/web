@@ -1,12 +1,28 @@
 {% extends 'base/base.html' %}
 {% load staticfiles %}
 
+{% block title %} {{ language.info.home }} {% endblock %}
+
 {% block content %}
-    <div class="container">
-        <h1>Estas en home</h1>
-        <h4>La pagina se mostrara en {{ language.name }}</h4>
- 			
-			
+ 		{% include 'base/sections/slider.html' %}
+    <div class="container">	
+        <!-- <h4>La pagina se mostrara en {{ language.name }}</h4> -->
+        <div class="row">
+        	<div class="center">
+        		<h4>{{ language.info.greeting }} {{ language.info.name }}</h4>
+        	</div>
+        	<p class="flow-text">
+				{{ language.info.description }}
+        	</p>
+        </div>
+        <div class="row">
+        	<div class="center">
+        		<h4>{{ language.info.charts }}</h4>
+        	</div>
+        	<h4>{{ language.info.chart1_title }}</h4>
+        	<br>
+        	<h4>{{ language.info.chart2_title }}</h4>
+        </div>
     </div>
 {% endblock %}
 
@@ -14,11 +30,16 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 
+			$('.slider').slider({
+				indicators: false
+			});
+
 			$('select[name=idioms]').change(function(){
 				url = "{% url 'page:home' %}"+$(this).val();
 				console.log(url);
 				location.href = url;
 			});
+
 
 		});
 	</script>
