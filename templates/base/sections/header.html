@@ -1,5 +1,14 @@
 {% load staticfiles %}
 <header>
+
+	<ul id="drop-account" class="dropdown-content">
+	  <li><a href="#!"><i class="fas fa-user-edit fa-lg"></i> &nbsp;&nbsp;{{language.info.profile}}</a></li>
+	  <!-- <li class="divider"></li> -->
+	   <li><a href="#!"><i class="fas fa-code fa-lg"></i> &nbsp;&nbsp;{{language.info.my_codes}}</a></li>
+	  <li class="divider"></li>
+	  <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt fa-lg"></i> &nbsp;&nbsp;{{language.info.logout}}</a></li>
+	</ul>
+
 	<nav>
 	    <div class="nav-wrapper teal">
 	      	<div class="container">
@@ -16,7 +25,7 @@
 					</select>
 	        		</li>
 	      		</ul>
-	      		<a href="{% url 'page:home' %}" class="brand-logo truncate center" style="margin-left: 20px;"><i class="fab fa-autoprefixer"></i>nombre</a>
+	      		<a href="{% url 'page:home' %}" class="brand-logo truncate" style="margin-left: 20px;"><i class="fab fa-galactic-senate fa-lg"></i> POICOFU</a>
 	      				
 				<a href="#" data-activates="mobile" class="button-collapse">
 					<i class="material-icons">menu</i>
@@ -24,7 +33,19 @@
 	      				
 	      		<ul class="right hide-on-med-and-down">
 		        	<li><a href="{% url 'page:home' %}">{{language.info.home}}</a></li>
-		        
+
+		        	{% if request.user.is_authenticated %}
+						<li><a href="#">{{language.info.community}}</a></li>
+						<li><a href="#">{{language.info.compiler}}</a></li>
+
+						<li><a href="#!" class="dropdown-button" data-activates="drop-account">
+							<i class="fas fa-user-astronaut fa-lg"></i>
+							{{request.user.username }} <i class="fas fa-angle-down"></i>
+						</a></li>
+		        	{% else %}
+						<li><a href="{% url 'login' %}">{{language.info.login}}</a></li>
+
+		        	{% endif %}
 	      		</ul>
 	      		<ul class="side-nav" id="mobile">
 		        	<li><a href="{% url 'page:home' %}">{{language.info.home}}</a></li>

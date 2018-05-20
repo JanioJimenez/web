@@ -32,3 +32,31 @@ img.flag {
 	/*color: white;*/
 	display: none;
 }
+
+/*========================  LOGIN ==========================*/
+a.btn-block {
+	border-radius: 5px;
+	margin-bottom: 10px;
+	min-width: 100%;
+}
+a.btn-google {
+	background-color: red;
+}
+a.btn-google:hover {
+	color: red;
+	background-color: white;
+}
+a.btn-github {
+	background-color: #212121;
+}
+a.btn-github:hover {
+	color: #212121;
+	background-color: white;
+}
+a.btn-facebook {
+	background-color: #01579b;
+}
+a.btn-facebook:hover {
+	color: #01579b;
+	background-color: white;
+}

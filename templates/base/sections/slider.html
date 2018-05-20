@@ -5,7 +5,13 @@
             <img src="https://lorempixel.com/580/250/nature/1"> <!-- random image -->
             <div class="caption center-align">
                 <h3>{{ language.info.name }}</h3>
-                <h5 class="light grey-text text-lighten-3" id="min_info">{{ language.info.min_info }}</h5>
+                  <h4 class="light grey-text text-lighten-3" id="min_info">
+                    {% if request.user.is_authenticated %}
+                      {{ language.community.greeting }} {{user.username}}
+                    {% else %}
+                      {{ language.info.min_info }}
+                    {% endif %}
+                  </h4>
             </div>
         </li>
        <!--  <li>

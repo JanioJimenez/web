@@ -14,3 +14,4 @@ def home(request, idiom="es"):
 		return render(request, 'page/home.html', context)
 	else:
 		return HttpResponse("El idioma no fue encontrado");
+
