@@ -3,11 +3,13 @@
 
 {% block title %} Sign Up {% endblock %}
 
+{% block header %} {% endblock %}
 
 {% block content %}
 	<div class="container">
 		<div class="row">
 			<div class="col s12 offset-m2 m8">
+				{% include 'base/modules/brand.html' %}
 				<div class="card-panel z-depth-4">
 					<center><big>Formulario de Registro</big></center><br>
 					<form method="post">

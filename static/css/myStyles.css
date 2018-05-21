@@ -72,6 +72,34 @@ img.flag {
 	overflow: scroll;
 	font-size: 13px;
 }
+/*========================  PROFILE ==========================*/
+.profile-icon {
+	height: 300px;
+	width: 300px;
+}
+.profile-text {
+	font-size: 20px;
+}
+.btn-rounded {
+	border-radius: 40px;
+}
+.dashed-divider {
+	border-top: 2px dashed lightgrey;
+	margin: 10px;
+}
+.profile-text h6 {
+	font-size: 18px;
+	line-height: 2.2;
+	margin-bottom: 20px;
+}
+.add-padding {
+	padding-left: 20px;
+}
+.border {
+	border: 1px dashed grey;
+	min-height: 200px;
+}
+
 /*========================  LOGIN ==========================*/
 a.btn-block {
 	border-radius: 5px;
@@ -98,4 +126,8 @@ a.btn-facebook {
 a.btn-facebook:hover {
 	color: #01579b;
 	background-color: white;
+}
+
+a.brand {
+	font-size: 50px;
 }

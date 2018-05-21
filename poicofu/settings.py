@@ -132,6 +132,6 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
-LOGIN_REDIRECT_URL = reverse_lazy('page:home')
+# LOGIN_REDIRECT_URL = reverse_lazy('page:home')
+LOGIN_REDIRECT_URL = reverse_lazy('page:redirect',  args=["es", "community"])
 LOGOUT_REDIRECT_URL = reverse_lazy('page:home')
-

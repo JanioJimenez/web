@@ -1,0 +1,106 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block title %} {{language.info.profile}} {% endblock %}
+
+{% block content %}
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col offset-s3 s6 m3 ">
+                <br>
+                <img src="{% static 'images/usericon.png' %}" class="circle responsive-img z-depth-2" alt="usericon">
+            </div>
+            <div class="col s12 offset-m1 m7">
+                <div class="row">
+                    <h3 class="greeting">{{language.community.greeting}} {{user.fname}}</h3>
+                    <h4>({{user.username}})</h4>
+                    <h5>{{user.email}}</h5>
+                    <br>
+                    <div>
+                        <span class="profile-text">{{language.profile.n_codes}}: <b>{{user.code_set.count}}</b></span>
+                        <div class="right">
+                            <a href="#" class="btn waves-effect waves-light btn-rounded">
+                                <i class="fas fa-code"></i> {{language.info.my_codes}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashed-divider"></div>
+
+                <div class="row profile-text">
+                    <h5>
+                        <b>{{language.profile.personal_data}}</b>
+                        <div class="right">
+                            <a href="#" class="btn waves-effect waves-light btn-rounded">
+                                <i class="fas fa-user-edit fa-lg"></i> {{language.profile.edit}}
+                            </a>
+                        </div>
+                    </h5>
+                    <div class="add-padding">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td><b>{{language.profile.age}}:</b></td>
+                                    <td>{{user.age}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>{{language.profile.city}}:</b></td>
+                                    <td>{{user.city}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>{{language.profile.country}}:</b></td>
+                                    <td>{{user.city.country}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>{{language.profile.language_preference}}:</b></td>
+                                    <td>{{user.language.name}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="dashed-divider"></div>
+
+                <div class="row profile-text">
+                    <h5><b>{{language.profile.account_options}}</b></h5>
+                    <div class="add-padding">
+                        <h6>
+                            {{language.profile.change_password}}
+                            <div class="right">
+                                <a href="#" class="btn waves-effect waves-light btn-rounded blue">
+                                    <i class="fas fa-user-shield fa-lg"></i> {{language.profile.change}}
+                                </a>
+                            </div>
+                        </h6>
+
+                        <h6>
+                            {{language.profile.delete_account}}
+                            <div class="right">
+                                <a href="#" class="btn waves-effect waves-light btn-rounded red">
+                                    <i class="fas fa-user-slash fa-lg"></i> {{language.profile.delete}}
+                                </a>
+                            </div>
+                        </h6>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extrajs %}
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+            $('select[name=idioms]').change(function(){
+                url = "{% url 'page:home' %}"+$(this).val()+"/profile";
+                console.log(url);
+                location.href = url;
+            });
+
+		});
+	</script>
+{% endblock %}
