@@ -14,10 +14,16 @@ class UserRegisterForm(UserCreationForm, forms.ModelForm):
                 'last_name',
                 'email',
                 'age',
+                'language',
             ]
         labels = {
                 'age' : 'Edad',
+                'language' : 'Lenguaje de preferencia',
             }
+        widgets = {
+            'language' : forms.Select(attrs={'required':'required'}),
+        }
+
 
 
 class CityForm(forms.ModelForm):
@@ -33,4 +39,3 @@ class CityForm(forms.ModelForm):
             'name' : 'Ciudad',
             'country' : 'Pais',
         }
-      

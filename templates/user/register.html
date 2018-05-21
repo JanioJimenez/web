@@ -38,15 +38,20 @@
                             {{ form.password2 }}
                             <label for="{{ form.password2.label }}">{{ form.password2.label }}</label>
                         </div>
-                        <div class="input-field col s12 m2">
+                        <div class="input-field col s12 m6">
                             {{ form.age }}
                             <label for="{{ form.age.label }}">{{ form.age.label }}</label>
                         </div>
-                        <div class="input-field col s12 m5">
+						<div class="input-field col s12 m6">
+                            {{ form.language }}
+							{{ form.language.errors }}
+                            <label for="{{ form.language.label }}">{{ form.language.label }}</label>
+                        </div>
+                        <div class="input-field col s12 m6">
                             {{ form2.name }}
                             <label for="{{ form2.name.label }}">{{ form2.name.label }}</label>
                         </div>
-                         <div class="input-field col s12 m5">
+                         <div class="input-field col s12 m6">
                             {{ form2.country }}
                             <label for="{{ form2.country.label }}">{{ form2.country.label }}</label>
                         </div>
