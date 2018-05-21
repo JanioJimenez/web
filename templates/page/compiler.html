@@ -1,0 +1,84 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block title %} {{ language.info.compiler }} {% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col s12 m12">
+				<!-- <h3 class="truncate white-text"></h3> -->
+				<p class="flow-text white-text">{{language.compiler.info}}</p>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+                           <div class="input-field col s12">
+                                <textarea rows="10"></textarea>
+
+                           </div>
+                         </div>
+                    </div>
+                    <div class="card-action grey lighten-3 btn-panel-compiler" style="overflow: hidden;">
+                        <a href="#" class="btn waves-effect waves-light blue" id="save_pc" disabled>
+                            <i class="fas fa-laptop fa-lg"></i>&nbsp;&nbsp; {{language.compiler.save_pc}}
+                        </a>
+                        <a href="#" class="btn waves-effect waves-light blue darken-3" id="save_db" disabled>
+                            {{language.compiler.save_db}}&nbsp;&nbsp; <i class="fas fa-cloud-upload-alt fa-lg"></i>
+                        </a>
+                        <div class="right">
+                            <a href="#" class="btn waves-effect waves-light green">
+                                <i class="fas fa-terminal fa-lg"></i> {{language.compiler.run}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            <div class="col s12 m8">
+                <div class="card-panel z-depth-3 no-padding card-log">
+					<center>{{language.compiler.compilation_log}}</center>
+                    <div id="compilation_log">
+                    	Lorem ipsum dolor sit amet, consectetur <br>
+						adipisicing elit. Ea optio, nisi <br>
+						quasi quis facere veritatis ab 	<br>
+						suscipit numquam beatae accusamus! <br>
+						Omnis ea enim quam fugit amet facilis <br>
+						Lorem ipsum dolor sit amet, consectetur <br>
+						adipisicing elit. Ea optio, nisi <br>
+						quasi quis facere veritatis ab 	<br>
+						suscipit numquam beatae accusamus! <br>
+						Omnis ea enim quam fugit amet facilis <br>
+						Lorem ipsum dolor sit amet, consectetur <br>
+						adipisicing elit. Ea optio, nisi <br>
+						quasi quis facere veritatis ab 	<br>
+						suscipit numquam beatae accusamus! <br>
+						Omnis ea enim quam fugit amet facilis <br>
+						nam pariatur. Dolorem. Lorem ipsum dolor sit amet,
+                    </div>
+                </div>
+            </div>
+			<div class="col s12 m4">
+                <div class="card-panel z-depth-3 no-padding card-log">
+					<center>{{language.compiler.execution_result}}</center>
+                    <div id="compilation_log"></div>
+                </div>
+            </div>
+		</div>
+	</div>
+{% endblock %}
+
+
+{% block extrajs %}
+	<script type="text/javascript">
+		$(document).ready(function(){
+
+            $('select[name=idioms]').change(function(){
+                url = "{% url 'page:home' %}"+$(this).val()+"/compiler";
+                console.log(url);
+                location.href = url;
+            });
+
+            $('body').addClass('teal');
+
+		});
+	</script>
+{% endblock %}

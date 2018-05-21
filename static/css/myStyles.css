@@ -56,6 +56,22 @@ img.flag {
 .card-usercode .description{
 	font-size: 16px;
 }
+
+/*========================  COMPILER ==========================*/
+.btn-panel-compiler .btn {
+	border-radius: 4px;
+	margin-left: 10px;
+}
+.card-log {
+	min-height: 100px;
+}
+#compilation_log {
+	height: 140px;
+	border: 1px dashed grey;
+	padding-left: 10px;
+	overflow: scroll;
+	font-size: 13px;
+}
 /*========================  LOGIN ==========================*/
 a.btn-block {
 	border-radius: 5px;
