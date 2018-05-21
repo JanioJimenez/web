@@ -53,3 +53,6 @@ class Code(models.Model):
     compilations = models.IntegerField(default=0)
     creation_date = models.DateField(auto_now=True)
     user = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "{}  ({})".format(self.user.username, self.name)

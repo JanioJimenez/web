@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from apps.page.views import home, UserRegister, community, redirect
+from apps.page.views import home, UserRegister, redirect
 
 urlpatterns = [
     url(r'^$', home, name="home"),

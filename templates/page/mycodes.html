@@ -7,12 +7,11 @@
 {% block content %}
 	<div class="container">
 		<div class="row">
-			<div class="col s12 m10">
-				<h3 class="truncate white-text">{{language.community.greeting}} {{user.username}}</h3>
-				<p class="flow-text white-text">{{language.community.info}}</p>
-
-				 {% if codes.all %}
-					 {% for code in codes.all %}
+			<div class="col s12 offset-m1 m10">
+				<h3 class="truncate white-text">{{language.info.my_codes}}</h3>
+                <div class="dashed-divider"></div><br>
+				 {% if user.code_set.all %}
+					 {% for code in user.code_set.all %}
 						 <div class="card-panel z-depth-2 hoverable card-usercode"  style="overflow: hidden;">
 							<div class="col s4 m2">
 								<img src="https://api.fnkr.net/testimg/200x200/00CED1/FFF/?text={{code.user.initial}}" class="responsive-img circle">
@@ -27,7 +26,7 @@
 					 {% endfor %}
 				 {% else %}
 					 <div class="center">
-						 <h4>No se han encontrado aportes de codigos</h4>
+						 <h4>Aun no tienes ningun código guardado</h4>
 					 </div>
 				 {% endif %}
 			</div>
@@ -41,7 +40,7 @@
 		$(document).ready(function(){
 
             $('select[name=idioms]').change(function(){
-                url = "{% url 'page:home' %}"+$(this).val()+"/community";
+                url = "{% url 'page:home' %}"+$(this).val()+"/mycodes";
                 console.log(url);
                 location.href = url;
             });

@@ -20,7 +20,7 @@
                     <div>
                         <span class="profile-text">{{language.profile.n_codes}}: <b>{{user.code_set.count}}</b></span>
                         <div class="right">
-                            <a href="#" class="btn waves-effect waves-light btn-rounded">
+                            <a href="{% url 'page:redirect' language.min_name 'mycodes' %}" class="btn waves-effect waves-light btn-rounded">
                                 <i class="fas fa-code"></i> {{language.info.my_codes}}</a>
                         </div>
                     </div>

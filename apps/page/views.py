@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.views.generic import CreateView
 
 from apps.page.models import Idiom, Info
+from apps.usuario.models import Code
 from apps.usuario.forms import UserRegisterForm, CityForm
 
 def home(request, idiom="es"):
@@ -27,16 +28,15 @@ def redirect(request, idiom="es", pagename="home"):
 		idioms = Idiom.objects.all()
 
 		context = {"language" : idiom, "idioms":idioms}
+
+		if pagename == 'community':
+			context.setdefault("codes", Code.objects.order_by('-creation_date'))
+
 		# return HttpResponse(idiom.info.title);
 		return render(request, 'page/'+pagename+'.html', context)
 	else:
 		return HttpResponse("El idioma no fue encontrado");
 
-
-
-def community(request):
-
-	return render(request, 'page/community.html', context);
 
 class UserRegister(CreateView):
 	model = User

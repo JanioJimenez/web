@@ -4,7 +4,7 @@
 	<ul id="drop-account" class="dropdown-content">
 	  <li><a href="{% url 'page:redirect' language.min_name 'profile' %}"><i class="fas fa-user-tie fa-lg"></i> &nbsp;&nbsp;{{language.info.profile}}</a></li>
 	  <!-- <li class="divider"></li> -->
-	   <li><a href="#!"><i class="fas fa-code fa-lg"></i> &nbsp;&nbsp;{{language.info.my_codes}}</a></li>
+	   <li><a href="{% url 'page:redirect' language.min_name 'mycodes' %}"><i class="fas fa-code fa-lg"></i> &nbsp;&nbsp;{{language.info.my_codes}}</a></li>
 	  <li class="divider"></li>
 	  <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt fa-lg"></i> &nbsp;&nbsp;{{language.info.logout}}</a></li>
 	</ul>
