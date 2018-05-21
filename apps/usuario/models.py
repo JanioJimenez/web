@@ -49,7 +49,7 @@ class User(AbstractUser, UserMethods):
 class Code(models.Model):
     name = models.CharField(max_length=30)
     code = models.BinaryField()
-    description = models.CharField(max_length=255, null=True, blank=True)
+    description = models.CharField(max_length=50)
     compilations = models.IntegerField(default=0)
     creation_date = models.DateField(auto_now=True)
     user = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)

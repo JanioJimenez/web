@@ -42,12 +42,12 @@
 			<div class="col s12 offset-m3 m6">
 				<div class="card-panel z-depth-4 align-center" style="overflow: hidden; padding-bottom: 10px;">
 					<div class="col s12 m4">
-						<a href="#" class="btn waves-effect btn-google btn-block">
+						<a href="{% url 'social:begin' 'google-oauth2' %}" class="btn waves-effect btn-google btn-block">
 							<i class="fab fa-google-plus-g fa-lg"></i>
 						</a>
 					</div>
 					<div class="col s12 m4">
-						<a href="#" class="btn waves-effect btn-github btn-block">
+						<a href="{% url 'social:begin' 'github' %}" class="btn waves-effect btn-github btn-block">
 							<i class="fab fa-github fa-lg"></i>
 						</a>
 					</div>

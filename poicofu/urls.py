@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^login/', login, {'template_name' : 'user/login.html'}, name="login"),
     url(r'^accounts/login/', login, {'template_name' : 'user/login.html'}, name="login"),
     url(r'^logout/$', logout_then_login, name='logout'),
+    url(r'^auth/', include('social_django.urls', namespace='social')),
 ]
