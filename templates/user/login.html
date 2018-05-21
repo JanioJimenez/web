@@ -41,19 +41,24 @@
 			</div>
 			<div class="col s12 offset-m3 m6">
 				<div class="card-panel z-depth-4 align-center" style="overflow: hidden; padding-bottom: 10px;">
-					<div class="col s12 m4">
+					<div class="col s6 l3">
 						<a href="{% url 'social:begin' 'google-oauth2' %}" class="btn waves-effect btn-google btn-block">
 							<i class="fab fa-google-plus-g fa-lg"></i>
 						</a>
 					</div>
-					<div class="col s12 m4">
+					<div class="col s6 l3">
 						<a href="{% url 'social:begin' 'github' %}" class="btn waves-effect btn-github btn-block">
 							<i class="fab fa-github fa-lg"></i>
 						</a>
 					</div>
-					<div class="col s12 m4">
-						<a href="#" class="btn waves-effect btn-facebook btn-block">
+					<div class="col s6 l3">
+						<a href="{% url 'social:begin' 'facebook' %}" class="btn waves-effect btn-facebook btn-block">
 							<i class="fab fa-facebook-f fa-lg"></i>
+						</a>
+					</div>
+					<div class="col s6 l3">
+						<a href="{% url 'social:begin' 'twitter' %}" class="btn waves-effect btn-twitter btn-block">
+							<i class="fab fa-twitter fa-lg"></i>
 						</a>
 					</div>
 				</div>

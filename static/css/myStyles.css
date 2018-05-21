@@ -13,7 +13,9 @@ main {
 		width: 85%;
 	}
 }
-
+.card-panel {
+	border-radius: 10px;
+}
 /*======================== Page Home ==========================*/
 img.flag {
 	width: 30px;
@@ -103,8 +105,9 @@ img.flag {
 /*========================  LOGIN ==========================*/
 a.btn-block {
 	border-radius: 5px;
-	margin-bottom: 10px;
+	margin: 10px;
 	min-width: 100%;
+	padding: 0;
 }
 a.btn-google {
 	background-color: red;
@@ -125,6 +128,14 @@ a.btn-facebook {
 }
 a.btn-facebook:hover {
 	color: #01579b;
+	background-color: white;
+}
+
+a.btn-twitter {
+	background-color: #22b8cf;
+}
+a.btn-twitter:hover {
+	color: #22b8cf;
 	background-color: white;
 }
 
