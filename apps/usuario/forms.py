@@ -39,3 +39,25 @@ class CityForm(forms.ModelForm):
             'name' : 'Ciudad',
             'country' : 'Pais',
         }
+
+class UserCompleteForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+
+        fields = [
+                'first_name',
+                'last_name',
+                'email',
+                'age',
+                'language',
+            ]
+        labels = {
+                'age' : 'Edad',
+                'language' : 'Lenguaje de preferencia',
+            }
+        widgets = {
+            'language' : forms.Select(attrs={'required':'required'}),
+            # 'city' : forms.Select(attrs={'required':'required'}),
+            # 'city' : forms.CharField(),
+        }

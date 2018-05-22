@@ -1,0 +1,10 @@
+{% load staticfiles %}
+<select name="idioms" id="idioms" class="icons idioms">
+    {% for idiom in idioms %}
+        {% if idiom.id == language.id %}
+            <option value="{{idiom.min_name}}" data-icon="{% static 'images/flags/' %}{{idiom.image}}" class="left" disabled selected>{{idiom.name}}</option>
+        {% else %}
+            <option value="{{idiom.min_name}}" data-icon="{% static 'images/flags/' %}{{idiom.image}}" class="left">{{idiom.name}}</option>
+        {% endif %}
+    {% endfor %}
+</select>

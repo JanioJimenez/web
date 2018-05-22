@@ -1,0 +1,101 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block title %} Complete Register {% endblock %}
+
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col s12 offset-m1 m10">
+                
+                <div class="add-padding">
+                    <h4 class="white-text">{{language.community.complete_registration}}</h4>
+                    <big class="white-text">{{language.community.message_complete_registration}}</big>
+                </div>
+
+                <div class="card-panel" style="padding-top:5px; padding-bottom: 1px;">
+                    <br>
+                    <form method="post">
+                        <div class="row">
+                            {% csrf_token %}
+                            {% if not user.first_name %}
+                            <div class="input-field col s12 m6">
+                                {{ form.first_name }}
+                                <label for="{{ form.first_name.label }}">{{ form.first_name.label }}</label>
+                            </div>
+                            {% else %}
+                                <div class="hide">{{ form.first_name }}</div>
+                            {% endif %}
+                            {% if not user.last_name %}
+                                <div class="input-field col s12 m6">
+                                    {{ form.last_name }}
+                                    <label for="{{ form.last_name.label }}">{{ form.last_name.label }}</label>
+                                </div>
+                            {% else %}
+                                <div class="hide">{{ form.last_name }}</div>
+                            {% endif %}
+                            {% if not user.email %}
+                                <div class="input-field col s12 m6">
+                                    {{ form.email }}
+                                    <label for="{{ form.email.label }}">{{ form.email.label }}</label>
+                                </div>
+                            {% else %}
+                                <div class="hide">{{ form.email }}</div>
+                            {% endif %}
+                            {% if not user.age %}
+                                <div class="input-field col s12 m6">
+                                    {{ form.age }}
+                                    <label for="{{ form.age.label }}">{{ form.age.label }}</label>
+                                </div>
+                            {% else %}
+                                <div class="hide">{{ form.age }}</div>
+                            {% endif %}
+                            {% if not user.language %}
+                                <div class="input-field col s12 m6">
+                                    {{ form.language }}
+                                    {{ form.language.errors }}
+                                    <label for="{{ form.language.label }}">{{ form.language.label }}</label>
+                                </div>
+                            {% else %}
+                                <div class="hide">{{ form.language }}</div>
+                            {% endif %}
+                            {% if not user.city %}
+                                <div class="input-field col s12 m6">
+                                    {{ form2.name }}
+                                    <label for="{{ form2.name.label }}">{{ form2.name.label }}</label>
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    {{ form2.country }}
+                                    <label for="{{ form2.country.label }}">{{ form2.country.label }}</label>
+                                </div>
+                            {% else %}
+                                <div class="hide">{{ form.city }}</div>
+                            {% endif %}
+
+                        </div>
+
+                       <div class="row center">
+                            <button type="submit" class="btn waves-effect waves-light">{{language.community.save_data}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extrajs %}
+	<script type="text/javascript">
+		$(document).ready(function(){
+            $('body').addClass('teal');
+
+            $('select[name=idioms]').change(function(){
+                url = "{% url 'page:home' %}"+$(this).val()+"/profile";
+                console.log(url);
+                location.href = url;
+            });
+
+		});
+	</script>
+{% endblock %}
