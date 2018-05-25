@@ -3,6 +3,12 @@
 
 {% block title %} {{ language.info.compiler }} {% endblock %}
 
+{% block extrahead %}
+	<link rel="stylesheet" href="{% static 'plugin/codemirror-5.38.0/lib/codemirror.css' %}">
+	<link rel="stylesheet" href="{% static 'plugin/codemirror-5.38.0/theme/mdn-like.css' %}">
+	<link rel="stylesheet" href="{% static 'plugin/codemirror-5.38.0/addon/hint/show-hint.css' %}">
+{% endblock %}
+
 {% block content %}
 	<div class="container">
 		<div class="row">
@@ -10,13 +16,8 @@
 				<!-- <h3 class="truncate white-text"></h3> -->
 				<p class="flow-text white-text">{{language.compiler.info}}</p>
                 <div class="card">
-                    <div class="card-content">
-                        <div class="row">
-                           <div class="input-field col s12">
-                                <textarea rows="10"></textarea>
-
-                           </div>
-                         </div>
+                    <div class="card-content no-padding">
+					   <textarea class="codemirror-textarea"></textarea>
                     </div>
                     <div class="card-action grey lighten-3 btn-panel-compiler" style="overflow: hidden;">
                         <a href="#" class="btn waves-effect waves-light blue" id="save_pc" disabled>
@@ -68,6 +69,11 @@
 
 
 {% block extrajs %}
+	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/lib/codemirror.js' %}"></script>
+	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/mode/javascript/javascript.js' %}"></script>
+	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/addon/hint/show-hint.js' %}"></script>
+	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/addon/hint/javascript-hint.js' %}"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function(){
 
@@ -77,7 +83,17 @@
                 location.href = url;
             });
 
+			var code = $(".codemirror-textarea")[0];
+			var editor = CodeMirror.fromTextArea(code, {
+				lineNumbers : true,
+				mode : "javascript",
+				theme : "mdn-like",
+				extraKeys : {"Ctrl-Space":"autocomplete"}
+			});
+
             $('body').addClass('teal');
+
+			
 
 		});
 	</script>
