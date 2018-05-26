@@ -9,9 +9,9 @@ from django.views.generic import CreateView
 from apps.page.models import Idiom, Info
 from apps.usuario.models import Code, User as Usuario
 from apps.usuario.forms import UserRegisterForm, CityForm, UserCompleteForm
+from apps.compiler.views import compile
 
 from social_django.models import UserSocialAuth
-
 
 def home(request, idiom="es"):
 	language = Idiom.objects.filter(min_name=idiom).first()
@@ -31,6 +31,8 @@ def redirect(request, idiom="es", pagename="home"):
 		idioms = Idiom.objects.all()
 		context = {"language" : language, "idioms":idioms}
 
+		if pagename == 'compile':
+			return compile(request, context)
 		if pagename == 'community':
 			context.setdefault("codes", Code.objects.order_by('-creation_date'))
 
@@ -40,6 +42,7 @@ def redirect(request, idiom="es", pagename="home"):
 			return HttpResponseRedirect(pagename+'/complete-register')
 			# return HttpResponseRedirect(reverse('page:complete-register'))
 			# return render(request, 'user/complete-register.html', context)
+
 	else:
 		return HttpResponse("El idioma no fue encontrado");
 

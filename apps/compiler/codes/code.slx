@@ -1,0 +1,6 @@
+func mayorDeEdad();
+    n1 :: 4
+    es n1 >:: 18 ;
+        ver CIERTO
+    deloc ;
+     	ver FALSO

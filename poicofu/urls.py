@@ -20,6 +20,7 @@ from django.contrib.auth.views import login, logout_then_login
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('apps.page.urls', namespace="page")),
+    url(r'^', include('apps.compiler.urls', namespace="compiler")),
 
     url(r'^login/', login, {'template_name' : 'user/login.html'}, name="login"),
     url(r'^accounts/login/', login, {'template_name' : 'user/login.html'}, name="login"),

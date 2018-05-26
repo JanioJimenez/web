@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block title %} {{ language.info.compiler }} {% endblock %}
+
+{% block extrahead %}
+	<link rel="stylesheet" href="{% static 'plugin/codemirror-5.38.0/lib/codemirror.css' %}">
+	<link rel="stylesheet" href="{% static 'plugin/codemirror-5.38.0/theme/mdn-like.css' %}">
+	<link rel="stylesheet" href="{% static 'plugin/codemirror-5.38.0/addon/hint/show-hint.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="card-content no-padding">
+                <br><br>
+                <div id="code"></div>
+<textarea class="codemirror-textarea">
+{{code}}
+</textarea>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block extrajs %}
+	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/lib/codemirror.js' %}"></script>
+	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/mode/javascript/javascript.js' %}"></script>
+	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/addon/hint/show-hint.js' %}"></script>
+	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/addon/hint/javascript-hint.js' %}"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+            // var code = new object();
+            // console.log("ada");
+            // $('#code').html(code);
+
+            $('select[name=idioms]').change(function(){
+                url = "{% url 'page:home' %}"+$(this).val()+"/compiler";
+                console.log(url);
+                location.href = url;
+            });
+
+			var code = $(".codemirror-textarea")[0];
+			var editor = CodeMirror.fromTextArea(code, {
+				lineNumbers : true,
+				mode : "javascript",
+				theme : "mdn-like",
+				extraKeys : {"Ctrl-Space":"autocomplete"}
+			});
+
+
+            $('body').addClass('teal');
+
+		});
+	</script>
+{% endblock %}
