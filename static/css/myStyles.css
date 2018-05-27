@@ -65,11 +65,11 @@ img.flag {
 	margin-left: 10px;
 }
 .card-log {
-	min-height: 100px;
+	min-height: 200px;
 }
-#compilation_log {
-	height: 140px;
-	border: 1px dashed grey;
+.compilation_log {
+	height: 200px;
+	border-top: 1px dashed grey;
 	padding-left: 10px;
 	overflow: scroll;
 	font-size: 13px;

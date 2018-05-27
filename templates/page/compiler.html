@@ -7,10 +7,11 @@
 	<link rel="stylesheet" href="{% static 'plugin/codemirror-5.38.0/lib/codemirror.css' %}">
 	<link rel="stylesheet" href="{% static 'plugin/codemirror-5.38.0/theme/mdn-like.css' %}">
 	<link rel="stylesheet" href="{% static 'plugin/codemirror-5.38.0/addon/hint/show-hint.css' %}">
+	<link rel="stylesheet" href="{% static 'plugin/codemirror-5.38.0/addon/display/fullscreen.css' %}">
 {% endblock %}
 
 {% block content %}
-	<div class="container c2">
+	<div class="container">
 		<div class="row">
 			<div class="col s12 m12">
 				<!-- <h3 class="truncate white-text"></h3> -->
@@ -20,12 +21,20 @@
 						{% csrf_token %}
 	                    <div class="card-content no-padding">{% include 'base/modules/codemirror.html' %}</div>
 	                    <div class="card-action grey lighten-3 btn-panel-compiler" style="overflow: hidden;">
-	                        <a href="#" class="btn waves-effect waves-light blue" id="save_pc" disabled>
+	                        <!-- <a href="#" class="btn waves-effect waves-light blue" id="save_pc" disabled>
 	                            <i class="fas fa-laptop fa-lg"></i>&nbsp;&nbsp; {{language.compiler.save_pc}}
 	                        </a>
 	                        <a href="#" class="btn waves-effect waves-light blue darken-3" id="save_db" disabled>
 	                            {{language.compiler.save_db}}&nbsp;&nbsp; <i class="fas fa-cloud-upload-alt fa-lg"></i>
-	                        </a>
+	                        </a> -->
+							<big>Número de compilaciones <b>
+								{% if n_compilations %}
+									{{n_compilations}}
+								{% else %}
+									0
+								{% endif %}
+							</b></big>
+
 	                        <div class="right">
 	                            <button type="submit" class="btn waves-effect waves-light green">
 	                                <i class="fas fa-terminal fa-lg"></i> {{language.compiler.run}}
@@ -38,7 +47,7 @@
             <div class="col s12 m7">
                 <div class="card-panel z-depth-3 no-padding card-log">
 					<center>{{language.compiler.compilation_log}}</center>
-                    <div id="compilation_log">
+                    <div class="compilation_log">
 						{% for result in lexer_results %}
 							{{result}} <br>
 						{% endfor %}
@@ -54,7 +63,7 @@
 			<div class="col s12 m5">
                 <div class="card-panel z-depth-3 no-padding card-log">
 					<center>{{language.compiler.execution_result}}</center>
-                    <div id="compilation_log">
+                    <div class="compilation_log">
 						{% for result in parser_results %}
 							{{result}} <br>
 						{% endfor %}
@@ -63,6 +72,28 @@
             </div>
 		</div>
 	</div>
+
+
+	<div class="fixed-action-btn toolbar">
+		<a class="btn-floating btn-large pulse teal accent-4">
+			<i class="fas fa-bars fa-lg"></i>
+		</a>
+		<ul>
+			<li><a class="btn waves-effect waves-light light-blue darken-4" >
+				 <i class="fas fa-download fa-2x"></i>&nbsp;&nbsp; {{language.compiler.save_pc}}
+			</a></li>
+		    <li><a class="btn waves-effect waves-light light-blue darken-1" >
+				{{language.compiler.save_db}}&nbsp;&nbsp; <i class="fas fa-cloud-upload-alt fa-2x"></i>
+			</a></li>
+		    <!-- <li><a class="btn-floating btn-large indigo tooltipped" data-position="left" data-tooltip="Pantalla Completa" data-delay="50" >
+				<i class="fas fa-expand fa-lg"></i>
+			</a></li>
+		    <li><a class="btn-floating btn-large cyan accent-4 tooltipped" data-position="left" data-tooltip="{{language.compiler.go}}" data-delay="50" >
+				<i class="fas fa-search fa-lg"></i>
+			</a></li> -->
+		 </ul>
+	  </div>
+
 {% endblock %}
 
 
@@ -71,10 +102,15 @@
 	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/mode/javascript/javascript.js' %}"></script>
 	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/addon/hint/show-hint.js' %}"></script>
 	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/addon/hint/javascript-hint.js' %}"></script>
+	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/addon/search/search.js' %}"></script>
+	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/addon/search/searchcursor.js' %}"></script>
+	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/addon/search/jump-to-line.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'plugin/codemirror-5.38.0/addon/display/fullscreen.js' %}"></script>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
-
+			  $('.fixed-action-btn.toolbar').openToolbar();
             $('select[name=idioms]').change(function(){
                 url = "{% url 'page:home' %}"+$(this).val()+"/compiler";
                 console.log(url);
@@ -87,7 +123,15 @@
 				mode : "javascript",
 				theme : "mdn-like",
 				indentUnit: 4,
-				extraKeys : {"Ctrl-Space":"autocomplete"}
+				extraKeys : {
+					"Ctrl-Space":"autocomplete",
+			        "F11": function(cm) {
+			          cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+			        },
+			        "Esc": function(cm) {
+			          if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+			        }
+				}
 			});
 
             $('body').addClass('teal');

@@ -2,7 +2,7 @@ import apps.compiler.analyzers.ply.yacc as yacc
 import os
 import codecs
 
-from apps.compiler.analyzers.lexer import tokens, analizadorLexico, lexer_results
+from apps.compiler.analyzers.lexer import tokens, lexer_results
 
 parser_results = []
 parser_log = []
@@ -177,14 +177,14 @@ def p_error(t):
     parser_results.append(mensaje)
 
 parser = yacc.yacc()
-
-nlinea_leida = 0
+# nlinea_leida = 0
 
 def ejecucion_linea_por_linea(codigo):
     global resultado_gramatica
     global nlinea_leida
     parser_results.clear()
     nlinea_leida = 0
+
     for lineaCodigo in codigo.splitlines():
         nlinea_leida = nlinea_leida + 1
         if lineaCodigo:
@@ -195,8 +195,7 @@ def ejecucion_linea_por_linea(codigo):
         else:
             # print("linea de codigo vacia")
             pass
-    # print("result: ", parser_results)
-    # print('\n'.join(parser_results))
+
     return parser_results
 
 # nombreArchivo =  'operaciones.slx'
