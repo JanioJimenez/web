@@ -7,6 +7,9 @@ import codecs
 from apps.compiler.analyzers.lexer import *
 from apps.compiler.analyzers.parser import *
 
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def compile(request, context):
 
     # nombreArchivo =  'operaciones.slx'

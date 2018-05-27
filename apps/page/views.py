@@ -12,6 +12,7 @@ from apps.usuario.forms import UserRegisterForm, CityForm, UserCompleteForm
 from apps.compiler.views import compile
 
 from social_django.models import UserSocialAuth
+from django.contrib.auth.decorators import login_required
 
 def home(request, idiom="es"):
 	language = Idiom.objects.filter(min_name=idiom).first()
@@ -24,6 +25,7 @@ def home(request, idiom="es"):
 	else:
 		return HttpResponse("El idioma no fue encontrado");
 
+@login_required
 def redirect(request, idiom="es", pagename="home"):
 	language = Idiom.objects.filter(min_name=idiom).first()
 
@@ -48,6 +50,7 @@ def redirect(request, idiom="es", pagename="home"):
 	else:
 		return HttpResponse("El idioma no fue encontrado");
 
+@login_required
 def user_complete_register(request, idiom="es", pagename="home"):
 	language = Idiom.objects.filter(min_name=idiom).first()
 

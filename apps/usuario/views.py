@@ -10,8 +10,13 @@ from apps.page.models import Idiom
 from apps.usuario.models import Code, User, City
 from apps.usuario.forms import CodeForm, UserUpdateForm, CityForm,\
     UserUpdatePasswordForm, UserRegisterForm
-# Create your views here.
 
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def saveCode(request):
     form = CodeForm(request.POST)
     if form.is_valid():
@@ -19,17 +24,19 @@ def saveCode(request):
 
     return HttpResponseRedirect(reverse_lazy('page:redirect',  args=['es', 'mycodes']))
 
+@login_required
 def downloadCode(request, codeid):
     code = Code.objects.get(id=codeid)
     return HttpResponse(code.code)
 
+@login_required
 def downloadCode2(request):
     archivo = open("static/codigo-descarga.txt","w")
     archivo.write(request.POST['code'])
     archivo.close()
     return HttpResponseRedirect(reverse_lazy('page:redirect',  args=['es', 'downloadcode']))
 
-
+@login_required
 def openCode(request, idiom, codeid):
     language = Idiom.objects.filter(min_name=idiom).first()
 
@@ -44,7 +51,7 @@ def openCode(request, idiom, codeid):
     else:
         return HttpResponse("El idioma no fue encontrado");
 
-
+@login_required
 def userUpdate(request, idiom):
     language = Idiom.objects.filter(min_name=idiom).first()
     user = User.objects.get(id=request.user.id)
@@ -75,10 +82,7 @@ def userUpdate(request, idiom):
     else:
     	return HttpResponse("El idioma no fue encontrado");
 
-
-from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
-
+@login_required
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
