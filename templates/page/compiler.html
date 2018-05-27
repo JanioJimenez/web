@@ -79,11 +79,16 @@
 
 
 	<div class="fixed-action-btn toolbar">
-		<a class="btn-floating btn-large pulse teal accent-4">
+		<a class="btn-floating btn-large pulse teal accent-4 z-depth-3" id="btn-fixed">
 			<i class="fas fa-bars fa-lg"></i>
 		</a>
 		<ul>
-			<li><a class="btn waves-effect waves-light light-blue darken-4" >
+			<li>
+				{% if code.id%}
+					<a class="btn waves-effect waves-light light-blue darken-4" href="{% url 'user:downloadCode' code.id %}" download="{{code.name}} - POICOFU.txt">
+				{% else %}
+					<a class="btn waves-effect waves-light light-blue darken-4" href="#" id="save_pc">
+				{% endif %}
 				 <i class="fas fa-download fa-2x"></i>&nbsp;&nbsp; {{language.compiler.save_pc}}
 			</a></li>
 		    <li><a class="btn waves-effect waves-light light-blue darken-1 modal-trigger" href="#modalCodeForm" id="save_db">
@@ -98,7 +103,26 @@
 		 </ul>
 	  </div>
 
+	  <div class="tap-target teal accent-3" data-activates="btn-fixed">
+		<div class="tap-target-content" style="line-height:1.3;">
+			<h5>{{language.community.greeting}}  {{user}}</h5>
+			Aqui tienes algunas utilidades <br>
+			Recuerda tener el cursor en el editor
+			<div class="add-padding">
+				<b>Ctrl + f:</b> {{language.compiler.go}} <br>
+				<b>Alt + g:</b> Ir a la linea <br>
+				<b>F11:</b> Pantalla completa <br>
+
+			</div>
+		</div>
+	 </div>
+
 	  {% include 'base/modules/modalCodeForm.html' %}
+
+	  <form action="{% url 'user:downloadCode2' %}" method="post" id="downloadCode2" class="hide">
+	  		{% csrf_token %}
+			<textarea name="code" id="codeDownload" class=""></textarea>
+	  </form>
 
 {% endblock %}
 
@@ -117,7 +141,7 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			 $('.modal').modal();
-			  $('.fixed-action-btn.toolbar').openToolbar();
+
             $('select[name=idioms]').change(function(){
                 url = "{% url 'page:home' %}"+$(this).val()+"/compiler";
                 console.log(url);
@@ -141,14 +165,24 @@
 				}
 			});
 
+			$('#save_pc').click(function(){
+				var codigoEditor = editor.getValue();
+				$('#codeDownload').val(codigoEditor);
+				$('#downloadCode2').submit();
+			});
+
 			$('#save_db').click(function(){
 				var codigoEditor = editor.getValue();
 				$('#codeForm').val(codigoEditor);
 			});
 
+			$('.tap-target').tapTarget('open');
+
+			// $('#btn-fixed').hover(function(){
+			// 	$('.fixed-action-btn.toolbar').openToolbar();
+			// });
+
             $('body').addClass('teal');
-
-
 
 		});
 	</script>

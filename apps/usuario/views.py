@@ -19,6 +19,17 @@ def saveCode(request):
 
     return HttpResponseRedirect(reverse_lazy('page:redirect',  args=['es', 'mycodes']))
 
+def downloadCode(request, codeid):
+    code = Code.objects.get(id=codeid)
+    return HttpResponse(code.code)
+
+def downloadCode2(request):
+    archivo = open("static/codigo-descarga.txt","w")
+    archivo.write(request.POST['code'])
+    archivo.close()
+    return HttpResponseRedirect(reverse_lazy('page:redirect',  args=['es', 'downloadcode']))
+
+
 def openCode(request, idiom, codeid):
     language = Idiom.objects.filter(min_name=idiom).first()
 
