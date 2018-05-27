@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col s12 offset-m1 m10">
 				<h3 class="truncate white-text">{{language.info.my_codes}}</h3>
-                <div class="dashed-divider"></div><br>
+                <div class="dashed-divider"></div>
 				 {% if user.code_set.all %}
 					 {% for code in user.code_set.all %}
 						 <div class="card-panel z-depth-2 hoverable card-usercode" data-url="{% url 'user:openCode' language.min_name code.id %}" style="overflow: hidden;">

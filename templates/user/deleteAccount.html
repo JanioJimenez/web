@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block title %} Delete Account {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col s12 offset-m2 m8">
+                {% include 'base/modules/brand.html' %}
+                <div class="card-panel">
+                    <center><h5>Eliminar Cuenta</h5></center>
+                    <form method="post">
+    					{% csrf_token %}
+                        <big>¿Estas seguro de eliminar tu cuenta, {{ user }}?</big>
+                        <br>Ten en cuenta que esta acción no es reversible, por lo tanto se eliminarán de forma permanente todos los aportes que hayas realizado en la plataforma, esto incluye tus códigos guardados
+    					<center>
+    							<br><br>
+    						<a href="{% url 'page:redirect' 'es' 'profile' %}" class="btn white black-text">Cancelar</a>
+    						<button type="submit" class="btn waves-effect red">Seguro, Eliminar</button>
+    					</center>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block extrajs %}
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+            $('body').addClass('teal');
+		});
+	</script>
+{% endblock %}

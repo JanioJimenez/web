@@ -82,3 +82,40 @@ class CodeForm(forms.ModelForm):
             'compilations' : 'Número de compilaciones',
             # 'creation_date' : 'Fecha Creacion',
         }
+
+class UserUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+
+        fields = [
+                'username',
+                'first_name',
+                'last_name',
+                'email',
+                'age',
+                'language',
+            ]
+        labels = {
+                'age' : 'Edad',
+                'language' : 'Lenguaje de preferencia',
+            }
+        widgets = {
+            'language' : forms.Select(attrs={'required':'required'}),
+
+        }
+
+class UserUpdatePasswordForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+
+        fields = [
+                'password',
+            ]
+        # labels = {
+        #
+        #     }
+        # widgets = {
+        #
+        # }

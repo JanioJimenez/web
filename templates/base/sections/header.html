@@ -2,11 +2,7 @@
 <header>
 
 	<ul id="drop-account" class="dropdown-content">
-	  <li><a href="{% url 'page:redirect' language.min_name 'profile' %}"><i class="fas fa-user-tie fa-lg"></i> &nbsp;&nbsp;{{language.info.profile}}</a></li>
-	  <!-- <li class="divider"></li> -->
-	   <li><a href="{% url 'page:redirect' language.min_name 'mycodes' %}"><i class="fas fa-code fa-lg"></i> &nbsp;&nbsp;{{language.info.my_codes}}</a></li>
-	  <li class="divider"></li>
-	  <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt fa-lg"></i> &nbsp;&nbsp;{{language.info.logout}}</a></li>
+	 	{% include 'base/modules/lisNav.html' %}
 	</ul>
 
 	<nav>
@@ -44,8 +40,21 @@
 		        	{% if request.user.is_authenticated %}
 						<li><a href="{% url 'page:redirect' language.min_name 'community' %}">{{language.info.community}}</a></li>
 						<li><a href="{% url 'page:redirect' language.min_name 'compiler' %}">{{language.info.compiler}}</a></li>
-
-						</a></li>
+						<li class="">
+							<ul class="collapsible collapsible-accordion">
+								<li>
+								   <a class="collapsible-header">
+									   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-user-astronaut fa-lg"></i>
+									   &nbsp;&nbsp;{{request.user.username }}&nbsp;&nbsp; <i class="fas fa-angle-down"></i>
+								   </a>
+								   <div class="collapsible-body">
+									 	<ul>
+											{% include 'base/modules/lisNav.html' %}
+									 	</ul>
+								   </div>
+								 </li>
+				   			</ul>
+						</li>
 		        	{% else %}
 						<li><a href="{% url 'page:signup' %}">{{language.info.sign_up}}</a></li>
 						<li><a href="{% url 'login' %}">{{language.info.login}}</a></li>

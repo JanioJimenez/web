@@ -1,0 +1,65 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+
+{% block title %} Actualizar datos personales {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row">
+			<div class="col s12 offset-m2 m8">
+                {% include 'base/modules/brand.html' %}
+				<div class="card-panel z-depth-4">
+					<center><big>Actualizar datos personales</big></center><br>
+					<form method="post">
+					    {% csrf_token %}
+					    <div class="input-field col s12 m6">
+                            {{ form.first_name }}
+                            <label for="{{ form.first_name.label }}">{{ form.first_name.label }}</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            {{ form.last_name }}
+                            <label for="{{ form.last_name.label }}">{{ form.last_name.label }}</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            {{ form.username }}
+                            <label for="{{ form.username.label }}">{{ form.username.label }}</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            {{ form.email }}
+                            <label for="{{ form.email.label }}">{{ form.email.label }}</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            {{ form.age }}
+                            <label for="{{ form.age.label }}">{{ form.age.label }}</label>
+                        </div>
+						<div class="input-field col s12 m6">
+                            {{ form.language }}
+                            <label for="{{ form.language.label }}">{{ form.language.label }}</label>
+                        </div>
+                        <div class="input-field col s12 m6">
+                            {{ form2.name }}
+                            <label for="{{ form2.name.label }}">{{ form2.name.label }}</label>
+                        </div>
+                         <div class="input-field col s12 m6">
+                            {{ form2.country }}
+                            <label for="{{ form2.country.label }}">{{ form2.country.label }}</label>
+                        </div>
+					    <div class="row center">
+                            <button type="submit" class="btn waves-effect waves-light">Guardar cambios</button>
+                        </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+{% endblock %}
+
+{% block extrajs %}
+	<script>
+		$('body').addClass('teal');
+	</script>
+{% endblock %}
