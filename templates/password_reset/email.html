@@ -1,0 +1,6 @@
+Hola {{ user.get_username }}
+Solicitastes reestablecer tu contraseña.
+Has click en el siguente enlace para cambiar tu contraseña
+{% block reset_link %}
+{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+{% endblock %}

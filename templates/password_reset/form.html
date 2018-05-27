@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Recuperacion de contraseña {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block content %}
+
+	<div class="container">
+        <br>
+        <div class="row">
+            <div class="col s12 offset-m2 m8">
+                {% include 'base/modules/brand.html' %}
+                <div class="card-panel ">
+                    <div class="center"><big>Recuperacion de contraseña</big></div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="input-field">
+                            {{ form.email }}
+                            <label for="{{form.email.label}}">{{form.email.label}}</label>
+                        </div>
+                        <div class="center">
+                            <button type="submit" class="btn waves-effect waves-light">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+	</div>
+
+{% endblock %}
+
+{% block extrajs %}
+	<script>
+		$('body').addClass('teal');
+	</script>
+{% endblock %}

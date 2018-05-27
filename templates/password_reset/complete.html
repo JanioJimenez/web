@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+
+{% block title %} Recuperacion de contraseña {% endblock %}
+
+{% block header %} {% endblock %}
+
+{% block content %}
+
+	<div class="container">
+        <br>
+        <div class="row">
+            <div class="col s12 offset-m2 m8">
+                {% include 'base/modules/brand.html' %}
+                <div class="card-panel center">
+                    <i class="fas fa-smile fa-10x teal-text"></i>
+                    <h5>Su contraseña fue restablecida correctamente</h5>
+                    <br><br>
+                    <a href="{% url 'login' %}" class="btn waves-effect waves-light">Iniciar Sesion</a>
+                </div>
+            </div>
+        </div>
+	</div>
+
+{% endblock %}
+
+{% block extrajs %}
+	<script>
+		$('body').addClass('teal');
+	</script>
+{% endblock %}

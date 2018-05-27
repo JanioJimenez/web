@@ -161,3 +161,10 @@ SOCIAL_AUTH_FACEBOOK_SECRET = 'df2fdc598ea7b0ea2cf14158bf66e538'
 
 SOCIAL_AUTH_TWITTER_KEY = 'kAbPBl1QODB5Y4T9FR8zMyEgs'
 SOCIAL_AUTH_TWITTER_SECRET = '3lWgpQ3EjecBfSoRLPeQ0ihx8jOpXurOPtZivsS7uQSp6HpGpl'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'restaurar.contrasena@gmail.com'
+EMAIL_HOST_PASSWORD = 'wdwrzloeyuykboix'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
