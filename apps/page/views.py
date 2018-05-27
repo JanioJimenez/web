@@ -31,6 +31,8 @@ def redirect(request, idiom="es", pagename="home"):
 		idioms = Idiom.objects.all()
 		context = {"language" : language, "idioms":idioms}
 
+		if pagename == 'compiler':
+			context.setdefault("compilations", 0)
 		if pagename == 'compile':
 			return compile(request, context)
 		if pagename == 'community':

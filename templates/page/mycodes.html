@@ -12,7 +12,7 @@
                 <div class="dashed-divider"></div><br>
 				 {% if user.code_set.all %}
 					 {% for code in user.code_set.all %}
-						 <div class="card-panel z-depth-2 hoverable card-usercode"  style="overflow: hidden;">
+						 <div class="card-panel z-depth-2 hoverable card-usercode" data-url="{% url 'user:openCode' language.min_name code.id %}" style="overflow: hidden;">
 							<div class="col s4 m2">
 								<img src="https://api.fnkr.net/testimg/200x200/00CED1/FFF/?text={{code.user.initial}}" class="responsive-img circle">
 							</div>
@@ -46,6 +46,11 @@
             });
 
             $('body').addClass('teal');
+
+			$('.card-usercode').click(function(){
+				var url = $(this).attr('data-url');
+				location.href = url;
+			});
 
 		});
 	</script>

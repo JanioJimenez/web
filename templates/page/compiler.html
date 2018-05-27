@@ -15,7 +15,14 @@
 		<div class="row">
 			<div class="col s12 m12">
 				<!-- <h3 class="truncate white-text"></h3> -->
-				<big><p class="white-text">{{language.compiler.info}}</p></big>
+				{% if code.name %}
+					<div class="card-panel">
+						<b>{{code.name}}</b> <br>
+						{{code.description}}
+					</div>
+				{% else %}
+					<big><p class="white-text">{{language.compiler.info}}</p></big>
+				{% endif %}
                 <div class="card">
 					<form method="post" action="{% url 'page:redirect' language.min_name 'compile' %}">
 						{% csrf_token %}
@@ -27,14 +34,11 @@
 	                        <a href="#" class="btn waves-effect waves-light blue darken-3" id="save_db" disabled>
 	                            {{language.compiler.save_db}}&nbsp;&nbsp; <i class="fas fa-cloud-upload-alt fa-lg"></i>
 	                        </a> -->
+							{{compilations}}
 							<big>Número de compilaciones <b>
-								{% if n_compilations %}
-									{{n_compilations}}
-								{% else %}
-									0
-								{% endif %}
+								{% if code.compilations != None%}{{code.compilations}}{% else %}{{compilations}}{% endif %}
 							</b></big>
-
+							<input type="number" class="hide" name="compilations" value="{% if code.compilations  != None%}{{code.compilations}}{% else %}{{compilations}}{% endif %}">
 	                        <div class="right">
 	                            <button type="submit" class="btn waves-effect waves-light green">
 	                                <i class="fas fa-terminal fa-lg"></i> {{language.compiler.run}}
@@ -82,7 +86,7 @@
 			<li><a class="btn waves-effect waves-light light-blue darken-4" >
 				 <i class="fas fa-download fa-2x"></i>&nbsp;&nbsp; {{language.compiler.save_pc}}
 			</a></li>
-		    <li><a class="btn waves-effect waves-light light-blue darken-1" >
+		    <li><a class="btn waves-effect waves-light light-blue darken-1 modal-trigger" href="#modalCodeForm" id="save_db">
 				{{language.compiler.save_db}}&nbsp;&nbsp; <i class="fas fa-cloud-upload-alt fa-2x"></i>
 			</a></li>
 		    <!-- <li><a class="btn-floating btn-large indigo tooltipped" data-position="left" data-tooltip="Pantalla Completa" data-delay="50" >
@@ -93,6 +97,8 @@
 			</a></li> -->
 		 </ul>
 	  </div>
+
+	  {% include 'base/modules/modalCodeForm.html' %}
 
 {% endblock %}
 
@@ -110,6 +116,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function(){
+			 $('.modal').modal();
 			  $('.fixed-action-btn.toolbar').openToolbar();
             $('select[name=idioms]').change(function(){
                 url = "{% url 'page:home' %}"+$(this).val()+"/compiler";
@@ -132,6 +139,11 @@
 			          if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
 			        }
 				}
+			});
+
+			$('#save_db').click(function(){
+				var codigoEditor = editor.getValue();
+				$('#codeForm').val(codigoEditor);
 			});
 
             $('body').addClass('teal');

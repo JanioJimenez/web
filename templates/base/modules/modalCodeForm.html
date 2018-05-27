@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<div id="modalCodeForm" class="modal">
+    <div class="modal-content">
+        <center><h5>{{language.compiler.save_db}}</h5></center>
+        <form action="{% url 'user:save_code' %}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="input-field col s12 m12">
+                    <input type="text" name="name" required maxlength="30">
+                    <label for="name">Nombre del Código</label>
+                </div>
+                <div class="input-field col s12 m12">
+                    <input type="text" name="description" required maxlength="40">
+                    <label for="description">Descripción del Código</label>
+                </div>
+            </div>
+            <input type="number" name="user" class="hide" value="{{user.id}}">
+            <input type="number" name="compilations" class="hide" value="{{compilations}}">
+            <textarea name="code" id="codeForm" class="hide"></textarea>
+            <div class="center">
+                <button class="btn waves-effect waves-light blue">{{language.compiler.save_db}}</button>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+    </div>
+</div>

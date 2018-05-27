@@ -1,3 +1,1 @@
-<textarea class="codemirror-textarea" name="code">
-{{code}}
-</textarea>
+<textarea class="codemirror-textarea" name="code" id="codeEditor">{% if code.code %}{{code.code}}{% else %}{{code}}{% endif %}</textarea>

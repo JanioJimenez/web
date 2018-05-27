@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from django.utils import timezone
 
 class Country(models.Model):
     name = models.CharField(max_length=30)
@@ -42,10 +42,10 @@ class User(AbstractUser, UserMethods):
 
 class Code(models.Model):
     name = models.CharField(max_length=30)
-    code = models.BinaryField()
+    code = models.TextField()
     description = models.CharField(max_length=50)
     compilations = models.IntegerField(default=0)
-    creation_date = models.DateField(auto_now=True)
+    creation_date = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE)
 
     def __str__(self):

@@ -53,6 +53,13 @@ def compile(request, context):
         print("============ply LEX===================")
         # print('\n'.join(plylex_results))
 
+
+    if request.POST['compilations']:
+        compilations = int(request.POST['compilations']) + 1
+    else:
+        compilations = 1
+    context.setdefault("compilations", compilations)
+
     context.setdefault("code", codigo)
     context.setdefault("parser_results", parser_results)
     context.setdefault("lexer_results", lexer_results)

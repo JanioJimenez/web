@@ -41,6 +41,9 @@ img.flag {
 	padding-bottom: 5px;
 	border-radius: 7px;
 }
+.card-usercode:active {
+	background-color: rgba(34, 171, 142, 0.78);
+}
 .card-usercode .date{
 	font-size: 14px;
 	font-weight: 500;
