@@ -65,8 +65,8 @@
                         <div class="row profile-text">
                             <h5><b>{{language.profile.account_options}}</b></h5>
                             <div class="add-padding">
+                                {{language.profile.change_password}}
                                 <h6>
-                                    {{language.profile.change_password}}
                                     <div class="right">
                                         <a href="{% url 'user:changePassword' %}" class="btn waves-effect waves-light btn-rounded blue">
                                             <i class="fas fa-user-shield fa-lg"></i> {{language.profile.change}}
@@ -74,6 +74,7 @@
 
                                     </div>
                                 </h6>
+                                {% endif %}
 
                                 <h6>
                                     {{language.profile.delete_account}}
