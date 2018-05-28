@@ -22,12 +22,13 @@
 								<div class="username">{{code.user.first_name}} {{code.user.last_name}} ({{code.user.username}})</div>
 								<div class="codename">{{code.name}}</div>
 								<div class="description">{{code.description}}</div>
+								<div class="right date">Compilaciones {{code.compilations}}</div>
 							</div>
 						</div>
 					 {% endfor %}
 				 {% else %}
 					 <div class="center">
-						 <h4>No se han encontrado aportes de codigos</h4>
+						 <h4 class="white-text">No se han encontrado aportes</h4>
 					 </div>
 				 {% endif %}
 			</div>
