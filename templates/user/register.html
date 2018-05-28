@@ -54,8 +54,15 @@
                             {{ form2.country }}
                             <label for="{{ form2.country.label }}">{{ form2.country.label }}</label>
                         </div>
+						<div class="m12 red-text">
+							<ul>
+								{% for field in form %}
+									{% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+								{% endfor %}
+							</ul>
+					    </div>
 					    <div class="row center">
-                            <button type="submit" class="btn waves-effect waves-light">Guardar</button>
+                            <button type="submit" class="btn waves-effect waves-light">Crear cuenta</button>
                         </div>
 					</form>
 				</div>

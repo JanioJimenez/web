@@ -3,11 +3,23 @@
 
 {% block title %} {{ language.info.home }} {% endblock %}
 
+{% block extrahead %}
+    <style type="text/css">
+        body {
+            background-image: url("{% static 'images/hypnotize.png' %}");
+        }
+    </style>
+    <script type="text/javascript" src="{% static 'plugin/charts/loader.js' %}"></script>
+
+    {% include 'base/sections/charts.html' %}
+{% endblock %}
+
 {% block content %}
 
  	{% include 'base/sections/slider.html' %}
 
     <div class="container">
+        <br>
         <!-- <h4>La pagina se mostrara en {{ language.name }}</h4> -->
         <div class="row">
         	<div class="center">
@@ -21,9 +33,15 @@
         	<div class="center">
         		<h4>{{ language.info.charts }}</h4>
         	</div>
-        	<h4>{{ language.info.chart1_title }}</h4>
-        	<br>
-        	<h4>{{ language.info.chart2_title }}</h4>
+        	<!-- <h5>{{ language.info.chart1_title }}</h5> -->
+            <div class="container" style="overflow:hidden;">
+                    <div id="chart1" style="width: 800px; height: 500px;"></div>
+            </div>
+            <div class="dashed-divider"></div>
+        	<!-- <h5>{{ language.info.chart2_title }}</h5> -->
+            <div class="container" style="overflow:hidden;">
+                    <div id="chart2" style="width: 800px; height: 500px;"></div>
+            </div>
         </div>
 
     </div>
@@ -34,7 +52,8 @@
 		$(document).ready(function(){
 
 			$('.slider').slider({
-				indicators: false
+				// indicators: false,
+                height: 550
 			});
 
             $('select[name=idioms]').change(function(){
@@ -45,4 +64,5 @@
 
 		});
 	</script>
+
 {% endblock %}

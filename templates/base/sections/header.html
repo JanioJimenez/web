@@ -4,25 +4,51 @@
 	<ul id="drop-account" class="dropdown-content">
 	 	{% include 'base/modules/lisNav.html' %}
 	</ul>
+	<ul class="side-nav" id="mobile">
+		<li><a href="{% url 'page:home' %}">{{language.info.home}}</a></li>
+		{% if request.user.is_authenticated %}
+		<li><a href="{% url 'page:redirect' language.min_name 'community' %}">{{language.info.community}}</a></li>
+		<li><a href="{% url 'page:redirect' language.min_name 'compiler' %}">{{language.info.compiler}}</a></li>
+		<li class="">
+			<ul class="collapsible collapsible-accordion">
+				<li>
+					<a class="collapsible-header">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-user-astronaut fa-lg"></i>
+						&nbsp;&nbsp;{{request.user.username }}&nbsp;&nbsp; <i class="fas fa-angle-down"></i>
+					</a>
+					<div class="collapsible-body">
+						<ul>
+							{% include 'base/modules/lisNav.html' %}
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</li>
+		{% else %}
+		<li><a href="{% url 'page:signup' %}">{{language.info.sign_up}}</a></li>
+		<li><a href="{% url 'login' %}">{{language.info.login}}</a></li>
+		{% endif %}
 
-	<nav>
-	    <div class="nav-wrapper teal">
-	      	<div class="container">
-	      		<ul class="left hide-on-med-and-down">
-	        		<li>
-	        			{% include 'base/modules/select_languages.html' %}
-	        		</li>
-	      		</ul>
-	      		<a href="{% url 'page:redirect' language.min_name '' %}" class="brand-logo truncate" style="margin-left: 20px;"><i class="fab fa-staylinked"></i> POICOFU</a>
+	</ul>
+	<div class="navbar-fixed">
+		<nav>
+			<div class="nav-wrapper teal">
+				<div class="container">
+					<ul class="left hide-on-med-and-down">
+						<li>
+							{% include 'base/modules/select_languages.html' %}
+						</li>
+					</ul>
+					<a href="{% url 'page:redirect' language.min_name '' %}" class="brand-logo truncate" style="margin-left: 20px;"><i class="fas fa-code"></i> POICOFU</a>
 
-				<a href="#" data-activates="mobile" class="button-collapse">
-					<i class="fas fa-bars fa-lg"></i>
-				</a>
+					<a href="#" data-activates="mobile" class="button-collapse">
+						<i class="fas fa-bars fa-lg"></i>
+					</a>
 
-	      		<ul class="right hide-on-med-and-down">
-		        	<li><a href="{% url 'page:redirect' language.min_name '' %}">{{language.info.home}}</a></li>
+					<ul class="right hide-on-med-and-down">
+						<li><a href="{% url 'page:redirect' language.min_name '' %}">{{language.info.home}}</a></li>
 
-		        	{% if request.user.is_authenticated %}
+						{% if request.user.is_authenticated %}
 						<li><a href="{% url 'page:redirect' language.min_name 'community' %}">{{language.info.community}}</a></li>
 						<li><a href="{% url 'page:redirect' language.min_name 'compiler' %}">{{language.info.compiler}}</a></li>
 
@@ -30,38 +56,14 @@
 							<i class="fas fa-user-astronaut fa-lg"></i>
 							{{request.user.username }} <i class="fas fa-angle-down"></i>
 						</a></li>
-		        	{% else %}
+						{% else %}
 						<li><a href="{% url 'page:signup' %}">{{language.info.sign_up}}</a></li>
 						<li><a href="{% url 'login' %}">{{language.info.login}}</a></li>
-		        	{% endif %}
-	      		</ul>
-	      		<ul class="side-nav" id="mobile">
-		        	<li><a href="{% url 'page:home' %}">{{language.info.home}}</a></li>
-		        	{% if request.user.is_authenticated %}
-						<li><a href="{% url 'page:redirect' language.min_name 'community' %}">{{language.info.community}}</a></li>
-						<li><a href="{% url 'page:redirect' language.min_name 'compiler' %}">{{language.info.compiler}}</a></li>
-						<li class="">
-							<ul class="collapsible collapsible-accordion">
-								<li>
-								   <a class="collapsible-header">
-									   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-user-astronaut fa-lg"></i>
-									   &nbsp;&nbsp;{{request.user.username }}&nbsp;&nbsp; <i class="fas fa-angle-down"></i>
-								   </a>
-								   <div class="collapsible-body">
-									 	<ul>
-											{% include 'base/modules/lisNav.html' %}
-									 	</ul>
-								   </div>
-								 </li>
-				   			</ul>
-						</li>
-		        	{% else %}
-						<li><a href="{% url 'page:signup' %}">{{language.info.sign_up}}</a></li>
-						<li><a href="{% url 'login' %}">{{language.info.login}}</a></li>
-		        	{% endif %}
+						{% endif %}
+					</ul>
 
-	      		</ul>
-	      	</div>
-	    </div>
-	</nav>
+				</div>
+			</div>
+		</nav>
+	</div>
 </header>

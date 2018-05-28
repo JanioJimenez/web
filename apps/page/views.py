@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.views.generic import CreateView
 
 from apps.page.models import Idiom, Info
-from apps.usuario.models import Code, User as Usuario
+from apps.usuario.models import Code, User as Usuario, Language, Country
 from apps.usuario.forms import UserRegisterForm, CityForm, UserCompleteForm
 from apps.compiler.views import compile
 
@@ -20,7 +20,13 @@ def home(request, idiom="es"):
 	if language:
 		idioms = Idiom.objects.all()
 		context = {"language" : language, "idioms":idioms}
-		# return HttpResponse(idiom.info.title);
+
+		programming_languages = Language.objects.all()
+		countries = Country.objects.all()
+		print(countries[46].city_set.count())
+		context.setdefault("chart1", programming_languages)
+		context.setdefault("chart2", countries)
+
 		return render(request, 'page/home.html', context)
 	else:
 		return HttpResponse("El idioma no fue encontrado");
@@ -112,3 +118,6 @@ class UserRegister(CreateView):
 			return HttpResponseRedirect(self.get_success_url())
 		else:
 			return self.render_to_response(self.get_context_data(form=form, form2=form2))
+
+def test(request):
+    return render(request, 'page/test.html')

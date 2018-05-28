@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+              ['Lenguaje', 'por usuario'],
+            {% for dato in chart1 %}{% if dato.user_set.count %}['{{dato}}', {{dato.user_set.count}}],{% endif %}{% endfor %}
+        ]);
+
+        var options = {
+            title: '{{ language.info.chart1_title }}',
+            is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart1'));
+        chart.draw(data, options);
+
+
+        var data = google.visualization.arrayToDataTable([
+              ['Pais', 'por usuario'],
+                {% for dato in chart2 %}{% if dato.city_set.count %}['{{dato}}', {{dato.city_set.count}}],{% endif %}{% endfor %}
+        ]);
+
+        var options = {
+            title: '{{ language.info.chart2_title }}',
+            is3D: true,
+        };
+
+        var chart2 = new google.visualization.PieChart(document.getElementById('chart2'));
+        chart2.draw(data, options);
+    }
+</script>
