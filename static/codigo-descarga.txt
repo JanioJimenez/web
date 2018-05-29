@@ -4,3 +4,5 @@ func mayorDeEdad();
         ver CIERTO
     deloc ;
      	ver FALSO
+        n :: 31+2
+ver n
