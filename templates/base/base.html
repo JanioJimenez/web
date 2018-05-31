@@ -4,14 +4,18 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{% block title %} Title {% endblock %} - POICOFU</title>
+	<title>{% block title %} Title {% endblock %} - CompiladorWeb</title>
 	<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/icon.ico' %}" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
 
 	<link rel="stylesheet" href="{% static 'css/material-icons.css' %}">
 
+	<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+
 	<script type="text/javascript" src="{% static 'js/fontawesome-all.js' %}"></script>
+
 
 	{% block extrahead %}
 	{% endblock %}
@@ -19,7 +23,7 @@
 	<link rel="stylesheet" href="{% static 'css/myStyles.css' %}">
 
 </head>
-<body>
+<body style="background: rgb(241, 241, 241) !important;">
 
 	{% block header %}
 		{% include 'base/sections/header.html' %}

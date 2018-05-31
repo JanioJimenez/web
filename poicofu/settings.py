@@ -85,7 +85,7 @@ WSGI_APPLICATION = 'poicofu.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'poicofu',
+        'NAME': 'compiler',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
@@ -147,7 +147,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # LOGIN_REDIRECT_URL = reverse_lazy('page:home')
-LOGIN_REDIRECT_URL = reverse_lazy('page:redirect',  args=["es", "community"])
+LOGIN_REDIRECT_URL = reverse_lazy('page:redirect',  args=["es", "home"])
 LOGOUT_REDIRECT_URL = reverse_lazy('page:home')
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '752530143192-i7cr735inh8b3e1i7lubcfvor7454b1g.apps.googleusercontent.com'

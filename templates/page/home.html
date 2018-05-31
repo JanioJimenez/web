@@ -21,28 +21,6 @@
     <div class="container">
         <br>
         <!-- <h4>La pagina se mostrara en {{ language.name }}</h4> -->
-        <div class="row">
-        	<div class="center">
-        		<h4>{{ language.info.greeting }} {{ language.info.name }}</h4>
-        	</div>
-        	<p class="flow-text">
-				{{ language.info.description }}
-        	</p>
-        </div>
-        <div class="row">
-        	<div class="center">
-        		<h4>{{ language.info.charts }}</h4>
-        	</div>
-        	<!-- <h5>{{ language.info.chart1_title }}</h5> -->
-            <div class="container" style="overflow:hidden;">
-                    <div id="chart1" style="width: 800px; height: 500px;"></div>
-            </div>
-            <div class="dashed-divider"></div>
-        	<!-- <h5>{{ language.info.chart2_title }}</h5> -->
-            <div class="container" style="overflow:hidden;">
-                    <div id="chart2" style="width: 800px; height: 500px;"></div>
-            </div>
-        </div>
 
     </div>
 {% endblock %}
@@ -53,7 +31,7 @@
 
 			$('.slider').slider({
 				// indicators: false,
-                height: 550
+                height: 400
 			});
 
             $('select[name=idioms]').change(function(){

@@ -1,5 +1,8 @@
+<li><a href="{% url 'page:redirect' language.min_name 'home' %}"><i class="material-icons">home
+    t</i> &nbsp;&nbsp;{{language.info.home}}</a></li> 
 <li><a href="{% url 'page:redirect' language.min_name 'profile' %}"><i class="fas fa-user-tie fa-lg"></i> &nbsp;&nbsp;{{language.info.profile}}</a></li>
-<!-- <li class="divider"></li> -->
- <li><a href="{% url 'page:redirect' language.min_name 'mycodes' %}"><i class="fas fa-code fa-lg"></i> &nbsp;&nbsp;{{language.info.my_codes}}</a></li>
+<li><a href="{% url 'page:redirect' language.min_name 'community' %}"><i class="material-icons">grade</i> &nbsp;&nbsp;{{language.info.community}}</a></li> 
+<li><a href="{% url 'page:redirect' language.min_name 'test' %}"><i class="material-icons">show_chart</i> &nbsp;&nbsp;{{language.info.test}}</a></li> 
+<li><a href="{% url 'page:redirect' language.min_name 'mycodes' %}"><i class="fas fa-code fa-lg"></i> &nbsp;&nbsp;{{language.info.my_codes}}</a></li>
 <li class="divider"></li>
 <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt fa-lg"></i> &nbsp;&nbsp;{{language.info.logout}}</a></li>
